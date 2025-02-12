@@ -1,22 +1,23 @@
 model Subsidiary {
-  id          String  @db.VarChar(255) @id  @default(uuid()) 
-  name        String  @db.VarChar(100) 
-  ci_nit      String  @db.VarChar(50)
-  address     String?  @db.VarChar(100)
-  city        String?  @db.VarChar(50)
-  country     String?  @db.VarChar(50)
-  cellphone   String?  @db.VarChar(50)
-  telephone   String?  @db.VarChar(50)
-  email       String?  @db.VarChar(80)
-  status      Boolean @default(true)
-  opening_hour DateTime?
-  closing_hour DateTime?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@unique([ci_nit])
+  id              String    @db.VarChar(255) @id  @default(uuid()) 
+  name            String    @db.VarChar(100) 
+  ci_nit          String    @db.VarChar(50)
+  status          Boolean   @default(true) 
+  address         String?   @db.VarChar(100)
+  city            String?   @db.VarChar(50)
+  country         String?   @db.VarChar(50)
+  cellphone       String?   @db.VarChar(50)
+  telephone       String?   @db.VarChar(50)
+  email           String?   @db.VarChar(80)
+  working_days    String?   @db.VarChar(255)
+  opening_hour    DateTime?
+  closing_hour    DateTime?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  
   @@unique([name])
-
-  user User []
+  @@unique([ci_nit])
+  
+  users User[] 
 }
 
