@@ -52,28 +52,4 @@ export const subsidiarySchema = z.object({
         .nullable(),
 
     status: z.boolean().optional(),
-
-    opening_hour: z.coerce.date()
-        .refine(date => !isNaN(date.getTime()), {
-            message: "Opening hour must be a valid timestamp."
-        }),
-
-    closing_hour: z.coerce.date()
-        .refine(date => !isNaN(date.getTime()), {
-            message: "Closing hour must be a valid timestamp."
-        }),
-})
-.superRefine((data, ctx) => {
-    if (data.opening_hour >= data.closing_hour) {
-        ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Opening hour must be earlier than closing hour.",
-            path: ["opening_hour"],
-        });
-        ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Closing hour must be later than opening hour.",
-            path: ["closing_hour"],
-        });
-    }
 });

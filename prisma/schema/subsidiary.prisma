@@ -9,15 +9,13 @@ model Subsidiary {
   cellphone       String?   @db.VarChar(50)
   telephone       String?   @db.VarChar(50)
   email           String?   @db.VarChar(80)
-  working_days    String?   @db.VarChar(255)
-  opening_hour    DateTime?
-  closing_hour    DateTime?
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
   
   @@unique([name])
   @@unique([ci_nit])
   
   users User[] 
+  schedulesSubsidiaries ScheduleSubsidiary[]
 }
 

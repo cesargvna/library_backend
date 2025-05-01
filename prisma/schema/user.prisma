@@ -24,4 +24,6 @@ model User {
 
   subsidiary Subsidiary @relation(fields: [subsidiaryId], references: [id])
   subsidiaryId String @db.VarChar(255)
+
+  schedulesUsers ScheduleUser[]
 }

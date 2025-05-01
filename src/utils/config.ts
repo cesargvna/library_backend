@@ -1,8 +1,16 @@
 import dotenv from 'dotenv';
-dotenv.config(); 
+dotenv.config();
 
+const REQUIRED_ENV_VARS = ["PORT", "JWT_SECRET"];
 
-const PORT = process.env.PORT || 3000;
-const SECRET = process.env.JWT_SECRET || 'secret';
+REQUIRED_ENV_VARS.forEach((varName) => {
+  if (!process.env[varName]) {
+    console.error(`Error: Missing environment variable: ${varName}`);
+    process.exit(1);
+  }
+});
 
-export {PORT, SECRET};
+const PORT = Number(process.env.PORT);
+const SECRET = process.env.JWT_SECRET as string;
+
+export { PORT, SECRET };
